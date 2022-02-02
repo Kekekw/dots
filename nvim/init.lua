@@ -17,9 +17,11 @@ local opt = vim.opt
 local global_opt = vim.opt_global
 
 require("kekekw.plugins")
-require("kekekw.status")
+-- require("kekekw.status")
 require("kekekw.globals")
 require("kekekw.diagnostics")
+require("kekekw.plugins.galaxyline").setup()
+
 
 g["netrw_gx"] = "<cWORD>"
 g["vim_markdown_conceal"] = 0
@@ -49,13 +51,22 @@ opt.shiftwidth = indent
 opt.softtabstop = indent
 opt.expandtab = true
 opt.fileformat = "unix"
-opt.statusline = "%!luaeval('Super_custom_status_line()')"
+-- opt.statusline = "%!luaeval('Super_custom_status_line()')"
 
 map("i", "jj", "<ESC>")
 map("n", "<leader>fo", ":copen<cr>")
 map("n", "<leader>fc", ":cclose<cr>")
 map("n", "<leader>fn", ":cnext<cr>")
 map("n", "<leader>fp", ":cprevious<cr>")
+
+map("n", "<C-Up>", ":wincmd k<cr>")
+map("n", "<C-Down>", ":wincmd j<cr>")
+map("n", "<C-Left>", ":wincmd h<cr>")
+map("n", "<C-Right>", ":wincmd l<cr>")
+map('n', '<C-k>', ':wincmd k<CR>')
+map('n', '<C-j>', ':wincmd j<CR>')
+map('n', '<C-h>', ':wincmd h<CR>')
+map('n', '<C-l>', ':wincmd l<CR>')
 
 map("n", "<leader>xml", ":%!xmllint --format -<cr>")
 
@@ -65,9 +76,9 @@ map("n", "<leader>sc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_i
 cmd("colorscheme kanagawa")
 local kanagawa_colors = require("kanagawa.colors").setup()
 cmd(string.format([[hi! StatusLine guifg=%s guibg=%s]], kanagawa_colors.fujiGray, kanagawa_colors.sumiInk1))
-cmd([[hi! link StatusLineNC Comment]])
-cmd([[hi! link StatusError DiagnosticError]])
-cmd([[hi! link StatusWarn DiagnosticWarn]])
+--cmd([[hi! link StatusLineNC Comment]])
+-- cmd([[hi! link StatusError DiagnosticError]])
+-- cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])
 
