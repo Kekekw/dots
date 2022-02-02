@@ -35,6 +35,11 @@ require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim", "mfussenegger/nvim-dap" }
   })
   use({ "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" })
+
+  -- use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true }})
+  use({ "907th/vim-auto-save" })
+  use({ "kyazdani42/nvim-web-devicons" })
+  use({ "glepnir/galaxyline.nvim" })
 end)
 
 require("kekekw.plugins.blankline-options")
@@ -43,3 +48,5 @@ require("kekekw.plugins.chad-options")
 require("kekekw.plugins.lsp-options")
 require("kekekw.plugins.cmp-options")
 require("kekekw.plugins.treesitter-options")
+-- require("kekekw.plugins.lualine-options")
+require("kekekw.plugins.autosave-options")
