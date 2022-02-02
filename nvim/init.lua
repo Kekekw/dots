@@ -19,6 +19,7 @@ local global_opt = vim.opt_global
 require("kekekw.plugins")
 require("kekekw.status")
 require("kekekw.globals")
+require("kekekw.diagnostics")
 
 g["netrw_gx"] = "<cWORD>"
 g["vim_markdown_conceal"] = 0
@@ -59,7 +60,7 @@ map("n", "<leader>fp", ":cprevious<cr>")
 map("n", "<leader>xml", ":%!xmllint --format -<cr>")
 
 map("n", "<leader>slc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_line()<CR>]])
-map("n", "<leader>sc", [[<cmd>lua RELOAD("scala-utils.coursier).complete_from_input()<CR>]])
+map("n", "<leader>sc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_input()<CR>]])
 
 cmd("colorscheme kanagawa")
 local kanagawa_colors = require("kanagawa.colors").setup()
