@@ -8,6 +8,11 @@ require("telescope").setup({
     prompt_prefix = ">",
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    pickers = {
+      find_files = {
+        hidden = true
+      }
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,

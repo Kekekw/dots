@@ -88,6 +88,9 @@ lsp_config.tsserver.setup {
   root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
   on_attach = function(client, bufnr)
     local ts_utils = require("nvim-lsp-ts-utils")
+    cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]])
+    cmd([[autocmd CursorHold <buffer> lua vim.diagnostic.open_float()]])
+
     ts_utils.setup {
       debug = true 
     }
