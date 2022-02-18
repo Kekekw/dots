@@ -1,5 +1,5 @@
 require("packer").startup(function(use)
-  
+  use({ "wbthomason/packer.nvim" })
   use({
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -9,6 +9,7 @@ require("packer").startup(function(use)
     }
   })
  
+  use('glepnir/lspsaga.nvim')
   use({ 
     "hrsh7th/nvim-cmp",
     requires = {
@@ -38,8 +39,16 @@ require("packer").startup(function(use)
   use({ "907th/vim-auto-save" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "glepnir/galaxyline.nvim" })
+  use({ "windwp/nvim-autopairs"})
+
+  use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
+  use({ "b0o/schemastore.nvim" })
+  use({ "sbdchd/neoformat" })
 end)
 
+require("nvim-autopairs").setup() 
+
+-- require("lspsaga").init_lsp_saga()
 require("kekekw.plugins.blankline-options")
 require("kekekw.plugins.telescope-options")
 require("kekekw.plugins.chad-options")

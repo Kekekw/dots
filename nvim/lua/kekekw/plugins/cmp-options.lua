@@ -4,6 +4,7 @@ local cmp = require("cmp")
 cmp.setup({
   sources = {
     { name = "nvim_lsp", priority = 10 },
+    { nme = "nvim_lua" },
     { name = "buffer" },
     { name = "vsnip" },
     { name = "path" },

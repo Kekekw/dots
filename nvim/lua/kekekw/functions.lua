@@ -25,7 +25,7 @@ local function split_on(s, delimiter)
 	local from = 1
 	local delim_from, delim_to = string.find(s, delimiter, from)
 	while delim_from do
-		table.insert(result, string.sub(s, frim, delim_from - 1))
+		table.insert(result, string.sub(s, from, delim_from - 1))
 		from = delim_to + 1
 		delim_from, delim_to = string.find(s, delimiter, from)
 	end

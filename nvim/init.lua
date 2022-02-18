@@ -32,7 +32,7 @@ global_opt.shortmess:remove("F"):append("c")
 global_opt.termguicolors = true
 global_opt.hidden = true
 global_opt.showtabline = 1
-global_opt.updatetime = 300
+global_opt.updatetime = 500
 global_opt.showmatch = true
 global_opt.laststatus = 2
 global_opt.ignorecase = true
@@ -51,6 +51,12 @@ opt.softtabstop = indent
 opt.expandtab = true
 opt.fileformat = "unix"
 
+--require("lspsaga").init_lsp_saga({
+--	finder_action_keys = { open = '<CR>', vsplit = 's', split = 'i', quit = 'q' },
+--	server_filetype_map = { metals = { 'sbt', 'scala' }}
+--})
+
+
 map("i", "jj", "<ESC>")
 map("n", "<leader>fo", ":copen<cr>")
 map("n", "<leader>fc", ":cclose<cr>")
@@ -67,9 +73,6 @@ map('n', '<C-h>', ':wincmd h<CR>')
 map('n', '<C-l>', ':wincmd l<CR>')
 
 map("n", "<leader>xml", ":%!xmllint --format -<cr>")
-
-map("n", "<leader>slc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_line()<CR>]])
-map("n", "<leader>sc", [[<cmd>lua RELOAD("scala-utils.coursier").complete_from_input()<CR>]])
 
 cmd("colorscheme kanagawa")
 local kanagawa_colors = require("kanagawa.colors").setup()
