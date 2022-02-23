@@ -9,7 +9,10 @@ require("packer").startup(function(use)
     }
   })
  
-  use('glepnir/lspsaga.nvim')
+  use({
+    "glepnir/lspsaga.nvim",
+    requires = { "neovim/nvim-lspconfig" }
+  })
   use({ 
     "hrsh7th/nvim-cmp",
     requires = {
@@ -48,7 +51,7 @@ end)
 
 require("nvim-autopairs").setup() 
 
--- require("lspsaga").init_lsp_saga()
+require("kekekw.plugins.lspsaga-options")
 require("kekekw.plugins.blankline-options")
 require("kekekw.plugins.telescope-options")
 require("kekekw.plugins.chad-options")

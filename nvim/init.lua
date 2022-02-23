@@ -51,11 +51,6 @@ opt.softtabstop = indent
 opt.expandtab = true
 opt.fileformat = "unix"
 
---require("lspsaga").init_lsp_saga({
---	finder_action_keys = { open = '<CR>', vsplit = 's', split = 'i', quit = 'q' },
---	server_filetype_map = { metals = { 'sbt', 'scala' }}
---})
-
 
 map("i", "jj", "<ESC>")
 map("n", "<leader>fo", ":copen<cr>")
