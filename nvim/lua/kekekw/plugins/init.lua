@@ -19,7 +19,8 @@ require("packer").startup(function(use)
       { "hrsh7th/cmp-vsnip" },
       { "hrsh7th/vim-vsnip" }
     }
-  })  
+  })
+  use({ "ray-x/lsp_signature.nvim"})
   use({ "neovim/nvim-lspconfig" })
   use({ "tpope/vim-vinegar" })
   use({ "sheerun/vim-polyglot" })

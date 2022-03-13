@@ -20,7 +20,9 @@ fn.sign_define("DiagnosticsSignInfo", { text = "▬", texthl = "DiagnosticInfo" 
 fn.sign_define("DiagnosticsSignHint", { text = "▬", texthl = "DiagnosticHint" })
 
 
--- vim.diagnostic.config({ virtual_text = false })
-
-
+vim.diagnostic.config({ virtual_text = { 
+		source = "if_many", 
+		format = diagnostic_format 
+	} 
+})
 

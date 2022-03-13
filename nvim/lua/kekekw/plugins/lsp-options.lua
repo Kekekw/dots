@@ -38,11 +38,15 @@ metals_config.init_options.statusBarProvider = "on"
 metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 metals_config.on_attach = function(client, buffer)
+  require("metals").setup_dap()
   cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]])
-  cmd([[autocmd CursorHold <buffer> lua vim.diagnostic.open_float()]])
-  cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
   cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
   cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
+
+  
+  cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
+  cmd([[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]])
+  cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
 end
 
 cmd([[augroup lsp]])
@@ -50,13 +54,9 @@ cmd([[autocmd!]])
 cmd([[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]])
 cmd([[autocmd FileType scala,sbt,java lua require("metals").initialize_or_attach(metals_config)]])
 
--- cmd([[hi! link LspReferenceText CursorColumn]])
--- cmd([[hi! link LspReferenceRead CursorColumn]])
--- cmd([[hi! link LspReferenceWrite CursorColumn]])
-
--- cmd([[hi! link LspSagaFinderSelection CursorColumn]])
--- cmd([[hi! link LspSagaDocTruncateLine LspSagaHoverBorder]])
-
+cmd([[hi! link LspReferenceText CursorColumn]])
+cmd([[hi! link LspReferenceRead CursorColumn]])
+cmd([[hi! link LspReferenceWrite CursorColumn]])
 
 local dap = require("dap")
 
@@ -64,9 +64,17 @@ dap.configurations.scala = {
   {
     type = "scala",
     request = "launch",
-    name = "RunOrTest",
+    name = "Run",
     metals = {
-      runType = "runOrTestFile",
+      runType = "run",
+    }
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test",
+    metals = {
+      runType = "test"
     }
   },
   {
@@ -143,6 +151,14 @@ lsp_config.diagnosticls.setup{
   }
 }
 
+local signature_help_config = {
+  bind = true,
+  hhandler_opts = {
+    border = "rounded"
+  }
+}
+require("lsp_signature").setup(signature_help_config)
+
 
 map("n", "<leader>dc", [[<cmd>lua require("dap").continue()<CR>]])
 map("n", "<leader>dr", [[<cmd>lua require("dap").repl.toggle()<CR>]])
@@ -164,8 +180,6 @@ map("v", "K", [[<Esc><cmd>lua require("metals").type_of_range()<CR>]])
 map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
 map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
 map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
--- map("n", "<leader>ca", [[<cmd>lua require"lspsaga.codeaction".code_action()<CR>]])
--- map("n", "<leader>rn", [[<cmd>lua require("lspsaga.rename").rename()<CR>]])
 map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
 map("n", "<leader>ca", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
 map("n", "<leader>ws", [[<cmd>lua require("metals").hover_worksheet()<CR>]])
