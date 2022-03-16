@@ -39,7 +39,7 @@ metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabil
 
 metals_config.on_attach = function(client, buffer)
   require("metals").setup_dap()
-  cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]])
+  --cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]])
   cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
   cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
 

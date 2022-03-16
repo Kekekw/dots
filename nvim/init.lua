@@ -50,7 +50,9 @@ opt.shiftwidth = indent
 opt.softtabstop = indent
 opt.expandtab = true
 opt.fileformat = "unix"
-
+opt.list = true
+opt.listchars:append("eol:↴")
+opt.listchars:append("space:⋅")
 --require("lspsaga").init_lsp_saga({
 --	finder_action_keys = { open = '<CR>', vsplit = 's', split = 'i', quit = 'q' },
 --	server_filetype_map = { metals = { 'sbt', 'scala' }}
@@ -74,7 +76,8 @@ map('n', '<C-l>', ':wincmd l<CR>')
 
 map("n", "<leader>xml", ":%!xmllint --format -<cr>")
 
-cmd("colorscheme kanagawa")
+--cmd("colorscheme kanagawa")
+cmd("colorscheme tokyonight")
 local kanagawa_colors = require("kanagawa.colors").setup()
 cmd(string.format([[hi! StatusLine guifg=%s guibg=%s]], kanagawa_colors.fujiGray, kanagawa_colors.sumiInk1))
 cmd([[autocmd TextYankPost * silent! lua vim.highlight.on_yank {}]])

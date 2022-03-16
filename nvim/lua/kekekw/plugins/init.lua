@@ -26,17 +26,17 @@ require("packer").startup(function(use)
   use({ "sheerun/vim-polyglot" })
   use({ "ckipp01/nvim-jvmopts" })
   use({ "tpope/vim-fugitive" })
-  use({ "kyazdani42/nvim-web-devicons" })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "nvim-treesitter/nvim-treesitter" })
   use({ "nvim-treesitter/playground" })
   use({ "norcalli/nvim-colorizer.lua" })
   use({ "rebelot/kanagawa.nvim" })
+  use({ "folke/tokyonight.nvim"  })
   use ({
     "scalameta/nvim-metals",
     requires = { "nvim-lua/plenary.nvim", "mfussenegger/nvim-dap" }
   })
-  use({ "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" })
+  use({ "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps", requires = { "kyazdani42/nvim-web-devicons" } })
   use({ "907th/vim-auto-save" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "glepnir/galaxyline.nvim" })
@@ -45,6 +45,11 @@ require("packer").startup(function(use)
   use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
   use({ "b0o/schemastore.nvim" })
   use({ "sbdchd/neoformat" })
+  -- use({ "kyazdani42/nvim-tree.lua",
+  --  requires = {
+  --    "kyazdani42/nvim-web-devicons"
+   -- },
+  --  })
 end)
 
 require("nvim-autopairs").setup() 
@@ -53,6 +58,7 @@ require("nvim-autopairs").setup()
 require("kekekw.plugins.blankline-options")
 require("kekekw.plugins.telescope-options")
 require("kekekw.plugins.chad-options")
+-- require("kekekw.plugins.nvim-tree-options")
 require("kekekw.plugins.lsp-options")
 require("kekekw.plugins.cmp-options")
 require("kekekw.plugins.treesitter-options")
