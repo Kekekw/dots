@@ -169,6 +169,7 @@ map(
 )
 map("n", "<leader>dK", [[<cmd>lua require("dap.ui.widgets").hover()<CR>]])
 map("n", "<leader>dt", [[<cmd>lua require("dap").toggle_breakpoint()<CR>]])
+map("n", "<leader>dtl", [[<cmd>lua require("dap").list_breakpoints()<CR>]])
 map("n", "<leader>dso", [[<cmd>lua require("dap").step_over()<CR>]])
 map("n", "<leader>dsi", [[<cmd>lua require("dap").step_into()<CR>]])
 map("n", "<leader>dl", [[<cmd>lua require("dap").run_last()<CR>]])
