@@ -6,7 +6,7 @@ local util = require 'lspconfig/util'
 local lsp_config = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-capabilities.textDocument.completion.completionItem.snippetSupport = true 
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lsp_config.util.default_config = vim.tbl_extend("force", lsp_config.util.default_config, {
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
@@ -20,8 +20,58 @@ lsp_config.jsonls.setup {
   }
 }
 
-lsp_config.vuels.setup{}
-lsp_config.pyright.setup{}
+lsp_config.terraformls.setup {}
+lsp_config.vuels.setup {}
+lsp_config.pyright.setup {}
+lsp_config.sumneko_lua.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      }
+    }
+  }
+}
+lsp_config.gopls.setup {
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod" },
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    }
+  }
+}
+
+function OrgImports(wait_ms)
+  local params = vim.lsp.util.make_range_params()
+  params.context = { only = { "source.organizeImports" } }
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  for _, res in pairs(result or {}) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
+      else
+        vim.lsp.buf.execute_command(r.command)
+      end
+    end
+  end
+end
+
+cmd([[autocmd BufWritePre *.go lua <buffer> lua OrgImports(1000)]])
+
 
 metals_config = require("metals").bare_config()
 metals_config.settings = {
@@ -42,8 +92,8 @@ metals_config.on_attach = function(client, buffer)
   --cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]])
   cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
   cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
+  cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()]])
 
-  
   cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
   cmd([[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]])
   cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
@@ -100,14 +150,14 @@ lsp_config.tsserver.setup {
     cmd([[autocmd CursorHold <buffer> lua vim.diagnostic.open_float()]])
 
     ts_utils.setup {
-      debug = true 
+      debug = true
     }
     ts_utils.setup_client(client)
   end
 }
 
-lsp_config.diagnosticls.setup{
-  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "css"},
+lsp_config.diagnosticls.setup {
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css" },
   root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
   init_options = {
     filetypes = {

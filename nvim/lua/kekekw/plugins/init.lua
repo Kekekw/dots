@@ -8,9 +8,10 @@ require("packer").startup(function(use)
       { "nvim-telescope/telescope-fzy-native.nvim" }
     }
   })
- 
-  use('glepnir/lspsaga.nvim')
-  use({ 
+
+  -- use({ "kyazdani42/nvim-web-devicons" })
+  -- use('glepnir/lspsaga.nvim')
+  use({
     "hrsh7th/nvim-cmp",
     requires = {
       { "hrsh7th/cmp-buffer" },
@@ -36,24 +37,25 @@ require("packer").startup(function(use)
     "scalameta/nvim-metals",
     requires = { "nvim-lua/plenary.nvim", "mfussenegger/nvim-dap" }
   })
-  use({ "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps", requires = { "kyazdani42/nvim-web-devicons" } })
+  use({ "ms-jpq/chadtree", branch = chad, run = "python3 -m chadtree deps", requires = "kyazdani42/nvim-web-devicons"})
   use({ "907th/vim-auto-save" })
-  use({ "kyazdani42/nvim-web-devicons" })
   use({ "glepnir/galaxyline.nvim" })
   use({ "windwp/nvim-autopairs"})
 
   use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
   use({ "b0o/schemastore.nvim" })
   use({ "sbdchd/neoformat" })
+  use({"fatih/vim-go"})
   -- use({ "kyazdani42/nvim-tree.lua",
   --  requires = {
-  --    "kyazdani42/nvim-web-devicons"
-   -- },
-  --  })
+  --   "kyazdani42/nvim-web-devicons"
+  --  },
+  -- })
+  use({ "hashicorp/terraform-ls" })
 end)
 
-require("nvim-autopairs").setup() 
-
+require("nvim-autopairs").setup()
+-- require("kekekw.plugins.devicons-options")
 -- require("lspsaga").init_lsp_saga()
 require("kekekw.plugins.blankline-options")
 require("kekekw.plugins.telescope-options")

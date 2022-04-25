@@ -44,6 +44,7 @@ global_opt.scrolloff = 5
 opt.wrap = false
 opt.cursorline = true
 opt.number = true
+opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.tabstop = indent
 opt.shiftwidth = indent
