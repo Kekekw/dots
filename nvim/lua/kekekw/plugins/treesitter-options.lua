@@ -5,7 +5,7 @@ require("nvim-treesitter.configs").setup({
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
   },
-  ensure_installed = "maintained",
+  -- ensure_installed = "maintained",
   highlight = {
     enable = true,
     disable = { "scala" },

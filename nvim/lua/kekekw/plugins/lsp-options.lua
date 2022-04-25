@@ -20,6 +20,7 @@ lsp_config.jsonls.setup {
   }
 }
 
+lsp_config.terraformls.setup{}
 lsp_config.vuels.setup{}
 lsp_config.pyright.setup{}
 
@@ -42,7 +43,7 @@ metals_config.on_attach = function(client, buffer)
   --cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]])
   cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
   cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
-
+  cmd([[autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()]])
   
   cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
   cmd([[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]])

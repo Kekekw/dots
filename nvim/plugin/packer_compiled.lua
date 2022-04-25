@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/Users/kevin.willemet/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
     url = "https://github.com/ray-x/lsp_signature.nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/Users/kevin.willemet/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
   neoformat = {
     loaded = true,
     path = "/Users/kevin.willemet/.local/share/nvim/site/pack/packer/start/neoformat",
@@ -208,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevin.willemet/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["terraform-ls"] = {
+    loaded = true,
+    path = "/Users/kevin.willemet/.local/share/nvim/site/pack/packer/start/terraform-ls",
+    url = "https://github.com/hashicorp/terraform-ls"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
