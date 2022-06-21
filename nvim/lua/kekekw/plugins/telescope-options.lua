@@ -11,23 +11,28 @@ require("telescope").setup({
     mappings = {
       i = {
         ["<esc>"] = actions.close,
-        ["<C-space>"] = function(prompt_buf)
-          local opts = {
-            callback = actions.toggle_selection,
-            loop_callback = actions.send_selected_to_qflist
-          }
-        end
-      },  
+      },
       n = {
         ["f"] = actions.send_to_qflist,
       },
     },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden"
+    },
+
   },
   pickers = {
-      find_files = {
-        hidden = "true"
-      }
-    },
+    find_files = {
+      hidden = true
+    }
+  },
 })
 require("telescope").load_extension("fzy_native")
 
